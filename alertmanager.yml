@@ -1,0 +1,19 @@
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.qq.com:465'
+  smtp_from: '241075207@qq.com'
+  smtp_auth_username: '241075207@qq.com'
+  smtp_auth_password: 'cedgrqkhswtlbidb'
+  smtp_require_tls: false
+
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+  receiver: 'test-alertmanager'
+
+receivers:
+- name: 'test-alertmanager'
+  email_configs:
+  - to: 'sulibao2003@163.com'
