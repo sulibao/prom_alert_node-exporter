@@ -8,11 +8,11 @@
 docker-compose <-f docker-compose.yml> up -d
 ```
 
-## docker-compose.yml文件
+## 1.docker-compose.yml文件
 
 定义了部署所需要的镜像和配置文件参数
 
-## alertmanager.yml文件
+## 2.alertmanager.yml文件
 
 定义了告警邮件配置参数
 
@@ -40,19 +40,19 @@ receivers:
 
 
 
-## rules.yml
+## 3.rules.yml
 
-定义了告警规则配置
+3.定义了告警规则配置
 
-## blackbox.yml
+## 4.blackbox.yml
 
-定义了黑盒配置文件参数
+4.定义了黑盒配置文件参数
 
-## prometheus.yml
+## 5.prometheus.yml
 
 定义了prometheus-job和告警文件等配置
 
-## 访问方式
+## 6.访问方式
 
 ```
 prometheus：http://IP:3000
@@ -62,3 +62,7 @@ grafana：http://IP:9090
 alertmanager：http://IP:9093
 ```
 
+## 7.涉及简单grafana面板json如下
+
+disk.json：服务器磁盘使用展示
+node-exporter-grafana.json：服务器磁盘、io、cpu等使用展示
