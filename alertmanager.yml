@@ -1,0 +1,19 @@
+global:
+  resolve_timeout: 5m
+  smtp_smarthost: 'smtp.qq.com:465'   #邮件服务器地址
+  smtp_from: 'xxx'                #邮件发送地址
+  smtp_auth_username: 'xxx'       #邮箱认证用户地址，一般和smtp_from一致
+  smtp_auth_password: 'xxx'          #邮箱授权码
+  smtp_require_tls: false
+ 
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+  receiver: 'test-alertmanager'
+ 
+receivers:
+- name: 'test-alertmanager'
+  email_configs:
+  - to: 'xxx'               #告警接收邮箱地址
