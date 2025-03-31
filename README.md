@@ -1,6 +1,6 @@
 # prom_alert_node-exporter
 
-以下各文件用于通过docker-compose进行prometheus(email)+alertmanager+node-exporter的快速部署
+以下各文件用于通过docker-compose进行prometheus(email)+alertmanager+node-exporter的快速部署，涉及挂载数据目录和访问端口等信息请自行修改。
 
 用法如下：
 
@@ -42,11 +42,11 @@ receivers:
 
 ## 3.rules.yml
 
-3.定义了告警规则配置
+定义了告警规则配置
 
 ## 4.blackbox.yml
 
-4.定义了黑盒配置文件参数
+定义了黑盒配置文件参数
 
 ## 5.prometheus.yml
 
@@ -65,4 +65,5 @@ alertmanager：http://IP:9093
 ## 7.涉及简单grafana面板json如下
 
 disk.json：服务器磁盘使用展示
+
 node-exporter-grafana.json：服务器磁盘、io、cpu等使用展示
