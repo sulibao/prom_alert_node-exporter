@@ -71,6 +71,7 @@ node-exporter-grafana.json：服务器磁盘、io、cpu等使用展示
 ## 8.涉及镜像包(X86版本，Baidu Net Disk)
 
 prom_alert_exporter_images.tgz
+
 链接: https://pan.baidu.com/s/1xJI3sY5gvx27CWNmFno6Xw?pwd=dqq6 
 
 提取码: dqq6
