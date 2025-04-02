@@ -4,7 +4,7 @@
 
 用法如下：
 
-```
+```sh
 docker-compose <-f docker-compose.yml> up -d
 ```
 
@@ -16,7 +16,7 @@ docker-compose <-f docker-compose.yml> up -d
 
 定义了告警邮件配置参数
 
-```
+```yaml
 global:
   resolve_timeout: 5m
   smtp_smarthost: 'smtp.qq.com:465'   #邮件服务器地址
@@ -54,7 +54,7 @@ receivers:
 
 ## 6.访问方式
 
-```
+```sh
 prometheus：http://IP:3000
 
 grafana：http://IP:9090
@@ -64,13 +64,19 @@ alertmanager：http://IP:9093
 
 ## 7.涉及简单grafana面板json如下
 
+```sh
+#在grafana页面import json文件即可
+
 disk.json：服务器磁盘使用展示
 
 node-exporter-grafana.json：服务器磁盘、io、cpu等使用展示
+```
 
 ## 8.涉及镜像包(X86版本，Baidu Net Disk)
 
-prom_alert_exporter_images.tgz
+```sh
+docker load -i prom_alert_exporter_images.tgz
+```
 
 链接: https://pan.baidu.com/s/1xJI3sY5gvx27CWNmFno6Xw?pwd=dqq6 
 
