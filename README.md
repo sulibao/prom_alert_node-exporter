@@ -1,28 +1,28 @@
 # prom_alert_node-exporter
 
-以下各文件用于通过docker-compose进行prometheus(email)+alertmanager+node-exporter的快速部署，涉及挂载数据目录和访问端口等信息请自行修改。
+The following files are used for the rapid deployment of prometheus(email)+alertmanager+node-exporter through docker-compose. Please modify the information about mount data directory and access port.
 
-用法如下：
+Use it as follows：
 
 ```sh
 docker-compose <-f docker-compose.yml> up -d
 ```
 
-## 1.docker-compose.yml文件
+## 1.docker-compose.yml
 
-定义了部署所需要的镜像和配置文件参数
+Defines the image and configuration file parameters required for deployment
 
-## 2.alertmanager.yml文件
+## 2.alertmanager.yml
 
-定义了告警邮件配置参数
+Alert mail configuration parameters are defined
 
 ```yaml
 global:
   resolve_timeout: 5m
-  smtp_smarthost: 'smtp.qq.com:465'   #邮件服务器地址
-  smtp_from: 'xxx'                #邮件发送地址
-  smtp_auth_username: 'xxx'       #邮箱认证用户地址，一般和smtp_from一致
-  smtp_auth_password: 'xxx'          #邮箱授权码
+  smtp_smarthost: 'smtp.qq.com:465'   #Mail server address, need to connect to the port
+  smtp_from: 'xxx'                #Email address
+  smtp_auth_username: 'xxx'       #Email authentication user address, usually the same as smtp_from
+  smtp_auth_password: 'xxx'       #邮Email authorization code
   smtp_require_tls: false
  
 route:
@@ -35,24 +35,24 @@ route:
 receivers:
 - name: 'test-alertmanager'
   email_configs:
-  - to: 'xxx'               #告警接收邮箱地址
+  - to: 'xxx'               #Alert receiving email address
 ```
 
 
 
 ## 3.rules.yml
 
-定义了告警规则配置
+An alarm rule configuration is defined
 
 ## 4.blackbox.yml
 
-定义了黑盒配置文件参数
+The black-box profile parameters are defined
 
 ## 5.prometheus.yml
 
-定义了prometheus-job和告警文件等配置
+Configurations such as prometheus-job and alarm files are defined
 
-## 6.访问方式
+## 6.Address of access
 
 ```sh
 prometheus：http://IP:3000
@@ -62,22 +62,22 @@ grafana：http://IP:9090
 alertmanager：http://IP:9093
 ```
 
-## 7.涉及简单grafana面板json如下
+## 7.The json for the simple grafana panel is as follows
 
 ```sh
-#在grafana页面import json文件即可
+#Just import the json file from the grafana page
 
-disk.json：服务器磁盘使用展示
+disk.json：Server disk usage is shown
 
-node-exporter-grafana.json：服务器磁盘、io、cpu等使用展示
+node-exporter-grafana.json：Server disk, io, cpu usage is displayed
 ```
 
-## 8.涉及镜像包(X86版本，Baidu Net Disk)
+## 8.Involved image package (X86 version, Baidu Net Disk)
 
 ```sh
 docker load -i prom_alert_exporter_images.tgz
 ```
 
-链接: https://pan.baidu.com/s/1xJI3sY5gvx27CWNmFno6Xw?pwd=dqq6 
+Links: https://pan.baidu.com/s/1xJI3sY5gvx27CWNmFno6Xw?pwd=dqq6 
 
-提取码: dqq6
+Extraction code: dqq6
