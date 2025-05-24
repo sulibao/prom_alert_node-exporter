@@ -10,7 +10,7 @@ docker-compose <-f docker-compose.yml> up -d
 
 ## 1.docker-compose.yml
 
-Defines the image and configuration file parameters required for deployment
+Defines the image and configuration file parameters required for deployment,If you need to modify the image and port, please edit this file and modify it yourself.
 
 ## 2.alertmanager.yml
 
@@ -22,7 +22,7 @@ global:
   smtp_smarthost: 'smtp.qq.com:465'   #Mail server address, need to connect to the port
   smtp_from: 'xxx'                #Email address
   smtp_auth_username: 'xxx'       #Email authentication user address, usually the same as smtp_from
-  smtp_auth_password: 'xxx'       #邮Email authorization code
+  smtp_auth_password: 'xxx'       #Email authorization code
   smtp_require_tls: false
  
 route:
@@ -38,11 +38,9 @@ receivers:
   - to: 'xxx'               #Alert receiving email address
 ```
 
-
-
 ## 3.rules.yml
 
-An alarm rule configuration is defined
+This is where you define the alert rules you need.
 
 ## 4.blackbox.yml
 
@@ -50,7 +48,7 @@ The black-box profile parameters are defined
 
 ## 5.prometheus.yml
 
-Configurations such as prometheus-job and alarm files are defined
+This is where monitoring, alerting, and other tasks are configured.
 
 ## 6.Address of access
 
@@ -62,24 +60,39 @@ grafana：http://IP:9090
 alertmanager：http://IP:9093
 ```
 
-## 7.The json for the simple grafana panel is as follows
+## 7.Data source and data panel initialization configuration
 
-```sh
-#Just import the json file from the grafana page
-
+```yaml
+#The data sources are configured in the config folder。
+(1)datasources.yaml
+apiVersion: 1
+deleteDatasources:
+  - name: Prometheus
+    orgId: 1
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    orgId: 1
+    uid: prometheus
+    url: http://192.168.2.193:9090   #The address here is the address of your prometheus service。
+    isDefault: true
+(2)default-provider.yaml
+apiVersion: 1
+providers:
+- name: 'default-provider'
+  orgId: 1
+  folder: dashboards
+  folderUid: ''
+  type: file
+  disableDeletion: false
+  editable: true
+  updateIntervalSeconds: 10
+  options:
+    path: /etc/grafana/dashboards     
+    #Here you specify the path from the container to read the dashboards file, which you can find in the grafana mount in the docker-compose.yaml file
+    foldersFromFilesStructure: true
+#The dashboards file config the two initial node monitor panels
 disk.json：Server disk usage is shown
-
 node-exporter-grafana.json：Server disk, io, cpu usage is displayed
 ```
-
-## 8.Involved image package (X86 version, Baidu Net Disk)
-
-```sh
-docker load -i prom_alert_exporter_images.tgz
-```
-
-Links: https://pan.baidu.com/s/1xJI3sY5gvx27CWNmFno6Xw?pwd=dqq6 
-
-Extraction code: dqq6
-
-
