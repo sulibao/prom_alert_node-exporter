@@ -5,7 +5,8 @@ The following files are used for the rapid deployment of prometheus(email)+alert
 Use it as follows(Tip: You need to follow the README to change the parameters in each file to your actual parameters before performing this operation.)：
 
 ```sh
-docker-compose <-f docker-compose.yml> up -d
+Install: docker-compose <-f docker-compose.yml> up -d
+Uninstall: docker-compose <-f docker-compose.yml> down
 ```
 
 ## 1.docker-compose.yml
