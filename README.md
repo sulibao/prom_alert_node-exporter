@@ -1,16 +1,15 @@
 # prom_alert_node-exporter
 
-The following files are used for the rapid deployment of prometheus(email)+alertmanager+node-exporter through docker-compose. Please modify the information about mount data directory and access port.
+The following files are used for the rapid deployment of prometheus(email)+alertmanager+node-exporter through docker-compose. 
 
-Use it as follows：
+Use it as follows(Tip: You need to follow the README to change the parameters in each file to your actual parameters before performing this operation.)：
 
 ```sh
 docker-compose <-f docker-compose.yml> up -d
 ```
 
 ## 1.docker-compose.yml
-
-Defines the image and configuration file parameters required for deployment,If you need to modify the image and port, please edit this file and modify it yourself.
+Define the image and configuration file parameters required for deployment.
 
 ## 2.alertmanager.yml
 
@@ -50,17 +49,7 @@ The black-box profile parameters are defined
 
 This is where monitoring, alerting, and other tasks are configured.
 
-## 6.Address of access
-
-```sh
-prometheus：http://IP:3000
-
-grafana：http://IP:9090
-
-alertmanager：http://IP:9093
-```
-
-## 7.Data source and data panel initialization configuration
+## 6.Data source and data panel initialization configuration
 
 ```yaml
 #The data sources are configured in the config folder。
@@ -95,4 +84,14 @@ providers:
 #The dashboards file config the two initial node monitor panels
 disk.json：Server disk usage is shown
 node-exporter-grafana.json：Server disk, io, cpu usage is displayed
+```
+
+## 7.Address of access
+
+```sh
+prometheus：http://IP:3000
+
+grafana：http://IP:9090
+
+alertmanager：http://IP:9093
 ```
