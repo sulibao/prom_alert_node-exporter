@@ -1,8 +1,8 @@
 # prom_alert_node-exporter
 
-The following files are used for the rapid deployment of prometheus(email)+alertmanager+node-exporter through docker-compose. 
+以下文件用于通过docker-compose快速部署prometheus(email)+alertmanager+node-exporter。
 
-Use it as follows(Tip: You need to follow the README to change the parameters in each file to your actual parameters before performing this operation.)：
+使用方法如下（提示：在执行此操作之前，您需要按照README文件将每个文件中的参数更改为您的实际参数）：
 
 ```sh
 Install: docker-compose <-f docker-compose.yml> up -d
@@ -10,19 +10,19 @@ Uninstall: docker-compose <-f docker-compose.yml> down
 ```
 
 ## 1.docker-compose.yml
-Define the image and configuration file parameters required for deployment.
+定义部署所需的映像和配置文件参数
 
 ## 2.alertmanager.yml
 
-Alert mail configuration parameters are defined
+定义告警邮件配置参数
 
 ```yaml
 global:
   resolve_timeout: 5m
-  smtp_smarthost: 'smtp.qq.com:465'   #Mail server address, need to connect to the port
-  smtp_from: 'xxx'                #Email address
-  smtp_auth_username: 'xxx'       #Email authentication user address, usually the same as smtp_from
-  smtp_auth_password: 'xxx'       #Email authorization code
+  smtp_smarthost: 'smtp.qq.com:465'   #邮件服务器地址，需要指定连接端口
+  smtp_from: 'xxx'                #邮箱地址
+  smtp_auth_username: 'xxx'       #Email认证用户地址，通常与smtp_from相同
+  smtp_auth_password: 'xxx'       #电子邮件授权码
   smtp_require_tls: false
  
 route:
@@ -35,25 +35,25 @@ route:
 receivers:
 - name: 'test-alertmanager'
   email_configs:
-  - to: 'xxx'               #Alert receiving email address
+  - to: 'xxx'               #警告接收电子邮件地址
 ```
 
 ## 3.rules.yml
 
-This is where you define the alert rules you need.
+这是您定义需要的警报规则的地方
 
 ## 4.blackbox.yml
 
-The black-box profile parameters are defined
+定义黑盒描述文件参数
 
 ## 5.prometheus.yml
 
-This is where monitoring, alerting, and other tasks are configured.
+配置了监视、警报等
 
-## 6.Data source and data panel initialization configuration
+## 6.数据源和数据面板初始化配置
 
 ```yaml
-#The data sources are configured in the config folder。
+#数据源在config文件夹中配置
 (1)datasources.yaml
 apiVersion: 1
 deleteDatasources:
@@ -65,7 +65,7 @@ datasources:
     access: proxy
     orgId: 1
     uid: prometheus
-    url: http://192.168.2.193:9090   #The address here is the address of your prometheus service。
+    url: http://192.168.2.193:9090   #这里的地址是你的prometheus服务的地址
     isDefault: true
 (2)default-provider.yaml
 apiVersion: 1
@@ -80,14 +80,15 @@ providers:
   updateIntervalSeconds: 10
   options:
     path: /etc/grafana/dashboards     
-    #Here you specify the path from the container to read the dashboards file, which you can find in the grafana mount in the docker-compose.yaml file
+    #在这里指定从容器中读取dashboards文件的路径，该文件可以在docker-compose中的grafana挂载中找到yaml文件
     foldersFromFilesStructure: true
-#The dashboards file config the two initial node monitor panels
+
+#仪表板文件配置两个初始节点监视器面板
 disk.json：Server disk usage is shown
 node-exporter-grafana.json：Server disk, io, cpu usage is displayed
 ```
 
-## 7.Address of access
+## 7.访问地址
 
 ```sh
 prometheus：http://IP:3000
